@@ -1,0 +1,29 @@
+<a class="btn btn-sm btn-success mb-2" href="/products/form">
+    Tambah
+</a>
+<h4>Data Produk</h4>
+<hr>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            {{!-- <th scope="col">#</th> --}}
+            <th scope="col">Nama</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            {{!-- <th scope="row" valign="center">1</th> --}}
+            <td>{{this.name}}</td>
+            <td>{{this.stock}}</td>
+            <td>
+                <a href="/products/{{this._id}}" type="button" class="btn btn-sm btn-link">Edit</a>
+                <a href="/products/delete/{{this._id}}" type="button" class="btn btn-sm btn-danger"
+                    onclick="return confirm('Delete?')">Hapus</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

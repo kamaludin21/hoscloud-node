@@ -1,0 +1,59 @@
+<button type="button" class="btn btn-sm btn-primary mb-1" data-toggle="modal" data-target="#belanjaModal">
+    Tambah transaksi
+</button>
+<h4>Data belanja</h4>
+<hr>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            {{!-- <th scope="col">#</th> --}}
+            <th scope="col">Invoices</th>
+            <th scope="col">Tanggal</th>
+            <th scope="col">Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each list}}
+        <tr>
+            {{!-- <th scope="row" valign="center">1</th> --}}
+            <td>{{this.invoices}}</td>
+            <td>{{this.date}}</td>
+            <td>
+                <a href="/belanja/barang/{{this._id}}" type="button" class="btn btn-sm btn-link">Lihat</a>
+                <a href="/belanja/delete/{{this._id}}" type="button" class="btn btn-sm btn-danger"
+                    onclick="return confirm('Delete?')">Hapus</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="belanjaModal" tabindex="-1" aria-labelledby="belanjaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="belanjaModalLabel">Formulir Belanja</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/belanja/store" method="POST">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="date">Tanggal</label>
+                        <input type="date" class="form-control" name="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="invoices">Invoice</label>
+                        <input type="number" class="form-control" name="invoices" id="invoices" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

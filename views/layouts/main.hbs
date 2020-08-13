@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        input[type=number].jumlah {
+            width: 50px;
+        }
+    </style>
+
+    <title>Kamaludin</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="mt-3">
+            <h2>Mini Challenge Hoscloud - NodeJS + MongoDB</h2>
+        </div>
+        <hr>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/products">Product</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/belanja">Belanja</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <br>
+        {{{body}}}
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+        </script>
+    <script>
+        $('#search').on('keyup', function () {
+            let id_belanja = $('#resultSearch').attr('name');
+            console.log(name);
+            $('#resultSearch').empty();
+            if ($('#search').val() == '') {
+                $('#resultSearch').empty();
+            } else {
+                let valueSearch = search.value;
+                var expression = new RegExp(valueSearch, "i");
+                $.getJSON('http://127.0.0.1:8000/products/apis', function (data) {
+                    $.each(data, function (key, value) {
+                        if (value.name.search(expression) != -1) {
+                            $('#resultSearch').append('<form action="/barang/store" method="POST"><div class="card mb-1"><div class="card-body">' + value.name + '<div class="float-right"><input type="number" class="jumlah" name="jumlah" value="1"><button type="submit" class="btn btn-sm btn-primary ml-1">Tambah</button></div></div></div><input type="hidden" name="id_belanja" value="'+id_belanja+'"> <input type="hidden" name="name" value="' + value.name + '"></form>');
+                        }
+
+                    });
+                });
+            }
+        });
+
+    </script>
+</body>
+
+</html>

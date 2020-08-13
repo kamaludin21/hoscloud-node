@@ -1,0 +1,24 @@
+<a class="btn btn-sm btn-warning mb-2" href="/products">
+    Kembali
+</a>
+<div class="row">
+    <div class="col-6">
+        <h4>Formulir produk</h4>
+        <hr>
+        <form action="/products/store" method="post">
+            <div class="form-group">
+                <label for="name">Barang</label>
+                <input type="text" class="form-control" id="name" name="name" autofocus placeholder="Nama barang"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="stock">Jumlah</label>
+                <input type="number" class="form-control" id="stock" name="stock" placeholder="Jumlah barang" required>
+            </div>
+            <div class="float-right">
+
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+        </form>
+    </div>
+</div>

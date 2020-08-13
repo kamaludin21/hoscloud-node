@@ -1,0 +1,46 @@
+<h4>Belanja barang</h4>
+<hr>
+<p>Tanggal : {{ belanja.date }}</p>
+<p>Invoices : {{ belanja.invoices }}</p>
+<div class="row">
+    <div class="col-6">
+        <hr>
+        <form>
+            <div class="row">
+                <div class="col-12">
+                    <input type="text" class="form-control mr-2" id="search" name="search" placeholder="Cari barang"
+                        autocomplete="off">
+                </div>
+                <div class="col-12 mt-2 mb-2" id="resultSearch" name="{{ belanja.id }}">
+                </div>
+            </div>
+        </form>
+        <br>
+
+        <h6>Daftar belanja</h6>
+        <form action="/belanja/barang" method="post">
+            <ul class="list-group">
+                {{#each barang}}
+                <li class="list-group-item">
+                    <div class="row">
+                        <input type="hidden" name="id[]" value="{{ this.id }}">
+                        <input type="hidden" name="id_belanja[]" value="{{ this.id_belanja }}">
+                        <input type="hidden" name="name[]" value="{{ this.name }}">
+                        <div class="col-8">
+                            {{ this.name }}
+                        </div>
+                        <div class="col-2">
+                            {{ this.jumlah }}
+                        </div>
+                        <div class="col-2">
+                           <a href="/barang/delete/{{this._id}}" type="button" class="btn btn-sm btn-danger"
+                    onclick="return confirm('Delete?')">Hapus</a>
+                        </div>
+                    </div>
+                </li>
+                {{/each}}
+
+            </ul>
+        </form>
+    </div>
+</div>
